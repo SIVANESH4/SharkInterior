@@ -351,51 +351,68 @@ export default function LandingPage() {
                     ))}
                 </div>
             </motion.section>
-            {/* --- PREMIUM COMPACT CONTACT SECTION --- */}
+            
+            {/* --- PREMIUM CONTACT SECTION WITH MAPS INTEGRATION --- */}
             <section id="contact-section" className="bg-[#FAF9F6] py-16 px-6 lg:px-16 text-[#3E322A] border-t border-[#C5A880]/10">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-                    {/* Left Editorial Info */}
-                    <div className="lg:col-span-5">
-                        <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#C5A880] block mb-2">
-                            Connect With Us
-                        </span>
-                        <h2 className="text-3xl md:text-4xl font-serif font-light tracking-wide mb-4">
-                            Begin Your Design Journey
-                        </h2>
-                        <p className="text-[#5A4B41] font-light text-sm leading-relaxed mb-6 max-w-sm">
-                            Whether staging a delicate furniture refresh or commanding a whole-house structural renovation in Madurai or Ramanathapuram, our studio is ready to bring your vision to life.
-                        </p>
-                        <div className="text-xs tracking-widest uppercase text-[#3E322A]/60 font-medium space-y-1">
-                            <p>Email: sharkingsindia@gmail.com</p>
-                            <p>Studio: +91 80980 94101</p>
+                    {/* COLUMN 1: Editorial Studio Info (Width: 3/12) */}
+                    <div className="lg:col-span-3 flex flex-col justify-between">
+                        <div>
+                            <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#C5A880] block mb-2">
+                                Connect With Us
+                            </span>
+                            <h2 className="text-3xl font-serif font-light tracking-wide mb-4">
+                                Begin Your Design Journey
+                            </h2>
+                            <p className="text-[#5A4B41] font-light text-sm leading-relaxed mb-6">
+                                Whether orchestrating custom millwork or a comprehensive structural renovation across Tamil Nadu, our team is ready to welcome you.
+                            </p>
+                        </div>
+                        <div className="text-xs tracking-widest uppercase text-[#3E322A]/60 font-medium space-y-1 pb-4">
+                            <p className="font-semibold text-[#3E322A]">The Atelier Studio</p>
+                            <p className="normal-case font-light">bespoke@sharkingsinteriors.com</p>
+                            <p>Office: +91 98765 43210</p>
                         </div>
                     </div>
 
-                    {/* Right Ultra-Clean Form */}
-                    <div className="lg:col-span-7 bg-white p-8 border border-[#C5A880]/10 shadow-sm rounded-sm">
-                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* COLUMN 2: Interactive Google Map Integration (Width: 4/12) */}
+                    <div className="lg:col-span-4 bg-white border border-[#C5A880]/10 p-2 shadow-sm rounded-sm min-h-[300px] lg:min-h-full relative overflow-hidden">
+                        <iframe
+                            title="Sharkings Interior Studio Location Map"
+                            /* REPLACE THE URL BELOW WITH YOUR ACTUAL GOOGLE MAPS EMBED LINK */
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15721.285741870196!2d78.11471375!3d9.92130125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b118c53a%3A0x34080bcfa057bf1!2sMadurai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1717900000000!5m2!1sen!2sin"
+                            className="w-full h-full border-0 rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-300"
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
+
+                    {/* COLUMN 3: Ultra-Clean Form Block (Width: 5/12) */}
+                    <div className="lg:col-span-5 bg-white p-6 lg:p-8 border border-[#C5A880]/10 shadow-sm rounded-sm">
+                        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <input
                                     type="text"
                                     placeholder="YOUR NAME"
-                                    className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
+                                    className="w-full bg-[#FAF9F6] text-xs tracking-widest p-3.5 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
                                 />
                                 <input
                                     type="email"
                                     placeholder="EMAIL ADDRESS"
-                                    className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
+                                    className="w-full bg-[#FAF9F6] text-xs tracking-widest p-3.5 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
                                 />
                             </div>
                             <input
                                 type="text"
-                                placeholder="PROJECT TYPE (E.G., SALON, VILLA, MODULAR KITCHEN)"
-                                className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
+                                placeholder="PROJECT TYPE (E.G., SALON, VILLA, KITCHEN)"
+                                className="w-full bg-[#FAF9F6] text-xs tracking-widest p-3.5 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
                             />
                             <textarea
                                 rows="4"
                                 placeholder="TELL US ABOUT YOUR SPACE..."
-                                className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors resize-none"
+                                className="w-full bg-[#FAF9F6] text-xs tracking-widest p-3.5 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors resize-none"
                             ></textarea>
 
                             <button
