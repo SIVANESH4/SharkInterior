@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@layer base {
+  :root {
+    /* --- Base White Theme Layers --- */
+    --site-bg-pure: #FFFFFF;       /* Crisp white layout backgrounds */
+    --site-bg-ivory: #FAF9F6;      /* Off-white/alabaster for gentle sections contrast */
+    
+    /* --- Premium Earthy Browns --- */
+    --color-brown-primary: #3E322A;  /* Rich, deep espresso brown for primary headings and hero text */
+    --color-brown-muted: #5A4B41;    /* Lighter warm brown for scannable paragraph text */
+    
+    /* --- Luxury Muted Golds --- */
+    --color-gold-accent: #C5A880;   /* Signature warm champagne gold for borders, tags, and highlights */
+    --color-gold-hover: #B3956D;    /* Deepened gold tone for hover states and button interactions */
+    
+    /* --- Smooth Transitions --- */
+    --transition-premium: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+}
+*{
+  scrollbar-width: none;
+}
