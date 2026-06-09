@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Award, Compass, ShieldCheck, Users } from 'lucide-react';
 import Logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
     const [loading, setLoading] = useState(true);
@@ -119,13 +120,16 @@ export default function LandingPage() {
                 </div>
                 <div className="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase text-[#5A4B41]">
                     <a href="#about" className="hover:text-[#C5A880] transition-colors">About</a>
-                    <a href="#services" className="hover:text-[#C5A880] transition-colors">Services</a>
-                    <a href="#projects" className="hover:text-[#C5A880] transition-colors">Projects</a>
+                    <Link to="/services" className="hover:text-[#C5A880] transition-colors">Services</Link>
+                    <Link to="/projects" className="hover:text-[#C5A880] transition-colors">Projects</Link>
                     <a href="#why-us" className="hover:text-[#C5A880] transition-colors">Why Us</a>
                 </div>
-                <button className="border border-[#C5A880] text-[#3E322A] px-5 py-2 text-xs tracking-widest uppercase hover:bg-[#C5A880] hover:text-white transition-all duration-300">
+                <a
+                    href="#contact-section"
+                    className="inline-block border border-[#C5A880] text-[#3E322A] px-5 py-2 text-xs tracking-widest uppercase hover:bg-[#C5A880] hover:text-white transition-all duration-300 text-center"
+                >
                     Inquire Now
-                </button>
+                </a>
             </nav>
 
             {/* --- HERO SECTION --- */}
@@ -259,10 +263,12 @@ export default function LandingPage() {
                                 Our Latest Masterpieces
                             </h2>
                         </div>
-                        <button className="mt-4 md:mt-0 group flex items-center gap-2 text-xs tracking-widest uppercase font-semibold text-[#3E322A] hover:text-[#C5A880] transition-colors">
-                            View Entire Portfolio
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
+                        <Link to="/projects">
+                            <button className="mt-4 md:mt-0 group flex items-center gap-2 text-xs tracking-widest uppercase font-semibold text-[#3E322A] hover:text-[#C5A880] transition-colors">
+                                View Entire Portfolio
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </Link>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -345,6 +351,64 @@ export default function LandingPage() {
                     ))}
                 </div>
             </motion.section>
+            {/* --- PREMIUM COMPACT CONTACT SECTION --- */}
+            <section id="contact-section" className="bg-[#FAF9F6] py-16 px-6 lg:px-16 text-[#3E322A] border-t border-[#C5A880]/10">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    {/* Left Editorial Info */}
+                    <div className="lg:col-span-5">
+                        <span className="text-xs font-semibold tracking-[0.3em] uppercase text-[#C5A880] block mb-2">
+                            Connect With Us
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-serif font-light tracking-wide mb-4">
+                            Begin Your Design Journey
+                        </h2>
+                        <p className="text-[#5A4B41] font-light text-sm leading-relaxed mb-6 max-w-sm">
+                            Whether staging a delicate furniture refresh or commanding a whole-house structural renovation in Madurai or Ramanathapuram, our studio is ready to bring your vision to life.
+                        </p>
+                        <div className="text-xs tracking-widest uppercase text-[#3E322A]/60 font-medium space-y-1">
+                            <p>Email: sharkingsindia@gmail.com</p>
+                            <p>Studio: +91 80980 94101</p>
+                        </div>
+                    </div>
+
+                    {/* Right Ultra-Clean Form */}
+                    <div className="lg:col-span-7 bg-white p-8 border border-[#C5A880]/10 shadow-sm rounded-sm">
+                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <input
+                                    type="text"
+                                    placeholder="YOUR NAME"
+                                    className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
+                                />
+                                <input
+                                    type="email"
+                                    placeholder="EMAIL ADDRESS"
+                                    className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
+                                />
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="PROJECT TYPE (E.G., SALON, VILLA, MODULAR KITCHEN)"
+                                className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors"
+                            />
+                            <textarea
+                                rows="4"
+                                placeholder="TELL US ABOUT YOUR SPACE..."
+                                className="w-full bg-[#FAF9F6] text-xs tracking-widest p-4 border border-[#C5A880]/10 focus:outline-none focus:border-[#C5A880] text-[#3E322A] transition-colors resize-none"
+                            ></textarea>
+
+                            <button
+                                type="submit"
+                                className="w-full bg-[#3E322A] hover:bg-[#C5A880] text-white text-xs font-semibold tracking-[0.2em] uppercase py-4 transition-colors duration-300 rounded-sm shadow-sm"
+                            >
+                                Send Inquiry
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
 
             {/* --- ACCESSIBLE HIGH-END FOOTER --- */}
             <footer className="bg-[#3E322A] text-white py-12 px-6 lg:px-16">
@@ -363,10 +427,10 @@ export default function LandingPage() {
                         <h4 className="text-xs tracking-widest uppercase text-[#C5A880] font-semibold mb-3">
                             Connect
                         </h4>
-                        <p className="text-sm text-stone-200 font-light mb-1 hover:text-[#C5A880] transition-colors cursor-pointer">
+                        <p className="text-sm text-stone-200 font-light mb-1 hover:text-[#C5A880] transition-colors cursor-pointer tracking-wider">
                             sharkingsindia@gmail.com
                         </p>
-                        <p className="text-sm text-stone-200 font-light">+91 8098094101</p>
+                        <p className="text-sm text-stone-200 font-light">+91 80980 94101</p>
                     </div>
 
                     <div>
