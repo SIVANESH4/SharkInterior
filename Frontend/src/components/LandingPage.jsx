@@ -84,7 +84,7 @@ export default function LandingPage() {
                             >
                                 <motion.img
                                     src={Logo}
-                                    alt="SharkInterior Logo"
+                                    alt="SharkingsInterior Logo"
                                     className="w-full h-full object-contain pl-3"
                                     animate={{
                                         scale: [1, 1.04, 1],
@@ -115,10 +115,11 @@ export default function LandingPage() {
             {/* --- NAVBAR --- */}
             <nav className="sticky top-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#C5A880]/10 px-6 lg:px-16 py-5 flex items-center justify-between">
                 <div className="text-xl font-serif tracking-[0.2em] uppercase text-[#3E322A]">
-                    SHARK<span className="text-[#C5A880] font-light">INTERIOR</span>
+                    SHARKINGS<span className="text-[#C5A880] font-light">INTERIOR</span>
                 </div>
                 <div className="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase text-[#5A4B41]">
                     <a href="#about" className="hover:text-[#C5A880] transition-colors">About</a>
+                    <a href="#services" className="hover:text-[#C5A880] transition-colors">Services</a>
                     <a href="#projects" className="hover:text-[#C5A880] transition-colors">Projects</a>
                     <a href="#why-us" className="hover:text-[#C5A880] transition-colors">Why Us</a>
                 </div>
@@ -229,10 +230,10 @@ export default function LandingPage() {
                         </h2>
                         <div className="space-y-4 text-[#5A4B41] font-light leading-relaxed">
                             <p>
-                                Founded on the ethos of quiet luxury, SharkInterior redefines premium environments. We curate spaces that deeply reflect our clients' unique narratives while prioritizing spatial harmony and pristine craftsmanship.
+                                Since 2010, Sharkings Interior Design has operated as a premier, full-service interior architecture studio serving Madurai and Ramanathapuram. Specializing in curated residential and commercial environments, we bring refined expertise to every project phase.
                             </p>
                             <p>
-                                By harmonizing organic brown tones, premium woodwork, and delicate gold filigree, we balance warmth with high-end sophistication, making every room feel curated rather than just decorated.
+                                Whether orchestrating a subtle refresh of custom furniture and bespoke palettes or commanding a comprehensive, whole-house renovation, our team ensures a seamless journey and an unparalleled, timeless result.
                             </p>
                         </div>
                     </motion.div>
@@ -318,7 +319,7 @@ export default function LandingPage() {
                         Distinction
                     </span>
                     <h2 className="text-3xl md:text-4xl font-serif text-[#3E322A]">
-                        Why Partner With SharkInterior
+                        Why Partner With SharkingsInterior
                     </h2>
                 </motion.div>
 
@@ -351,7 +352,7 @@ export default function LandingPage() {
 
                     <div className="space-y-3">
                         <h3 className="text-xl font-serif tracking-[0.2em] uppercase">
-                            SHARK<span className="text-[#C5A880] font-light">INTERIOR</span>
+                            SHARKINGS<span className="text-[#C5A880] font-light">INTERIOR</span>
                         </h3>
                         <p className="text-sm text-stone-300 font-light max-w-sm leading-relaxed">
                             Curating high-end spatial realities that echo timelessness, warmth, and unmatched distinction.
@@ -363,9 +364,9 @@ export default function LandingPage() {
                             Connect
                         </h4>
                         <p className="text-sm text-stone-200 font-light mb-1 hover:text-[#C5A880] transition-colors cursor-pointer">
-                            atelier@sharkinterior.com
+                            sharkingsindia@gmail.com
                         </p>
-                        <p className="text-sm text-stone-200 font-light">+1 (555) 234-8900</p>
+                        <p className="text-sm text-stone-200 font-light">+91 8098094101</p>
                     </div>
 
                     <div>
@@ -373,15 +374,15 @@ export default function LandingPage() {
                             Studio Location
                         </h4>
                         <p className="text-sm text-stone-200 font-light leading-relaxed">
-                            Fifth Avenue Atelier, Suite 402<br />
-                            New York, NY 10011
+                            Plot no, 3617, TNHB Colony<br />
+                            Madurai, Tamil Nadu 625001
                         </p>
                     </div>
 
                 </div>
 
                 <div className="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs tracking-wider text-stone-400">
-                    <p>© 2026 SharkInterior. All rights reserved.</p>
+                    <p>© 2026 SharkingsInterior. All rights reserved.</p>
                     <div className="flex space-x-6 mt-3 sm:mt-0">
                         <a href="#" className="hover:text-[#C5A880] transition-colors font-light">Privacy Policy</a>
                         <a href="#" className="hover:text-[#C5A880] transition-colors font-light">Terms of Service</a>
