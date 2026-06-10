@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Award, Compass, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, Award, Compass, ShieldCheck, Users, Menu, X, ArrowUpRight } from 'lucide-react';
 import Logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
     const [loading, setLoading] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+        // Prevents background scrolling behind the mobile slide-out overlay
+        document.body.style.overflow = !isOpen ? 'hidden' : 'unset';
+    };
+
+    const closeMenu = () => {
+        setIsOpen(false);
+        document.body.style.overflow = 'unset';
+    };
 
     // Smooth timing to allow the drawing animation to finish elegantly
     useEffect(() => {
@@ -114,98 +126,225 @@ export default function LandingPage() {
             </AnimatePresence>
 
             {/* --- NAVBAR --- */}
-            <nav className="sticky top-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#C5A880]/10 px-6 lg:px-16 py-5 flex items-center justify-between">
-                <div className="text-xl font-serif tracking-[0.2em] uppercase text-[#3E322A]">
-                    SHARKINGS<span className="text-[#C5A880] font-light">INTERIOR</span>
-                </div>
+            <nav className="sticky top-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#C5A880]/10 px-6 lg:px-16 py-5 flex items-center justify-between text-[#3E322A]">
+
+                {/* --- BRANDING / LOGO CONTAINER --- */}
+                <Link to="/" onClick={closeMenu} className="text-xl font-serif tracking-[0.2em] uppercase">
+                    {/* Large text hidden on small screens, replaced by responsive logo asset image */}
+                    <span className="hidden md:inline">
+                        SHARKINGS<span className="text-[#C5A880] font-light">INTERIOR</span>
+                    </span>
+                    <img
+                        src={Logo}
+                        alt="Sharkings Logo"
+                        className="inline md:hidden h-7 w-auto object-contain mix-blend-multiply"
+                        onError={(e) => {
+                            // Fallback block initials if logo.png hasn't been uploaded yet
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'block';
+                        }}
+                    />
+                    <span className="hidden text-base font-serif tracking-[0.15em] uppercase font-bold">
+                        S<span className="text-[#C5A880]">I</span>
+                    </span>
+                </Link>
+
+                {/* --- DESKTOP NAVIGATION MATRIX (Hidden on Mobile) --- */}
                 <div className="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase text-[#5A4B41]">
                     <a href="#about" className="hover:text-[#C5A880] transition-colors">About</a>
                     <Link to="/services" className="hover:text-[#C5A880] transition-colors">Services</Link>
                     <Link to="/projects" className="hover:text-[#C5A880] transition-colors">Projects</Link>
                     <a href="#why-us" className="hover:text-[#C5A880] transition-colors">Why Us</a>
                 </div>
-                <a
-                    href="#contact-section"
-                    className="inline-block border border-[#C5A880] text-[#3E322A] px-5 py-2 text-xs tracking-widest uppercase hover:bg-[#C5A880] hover:text-white transition-all duration-300 text-center"
-                >
-                    Inquire Now
-                </a>
+
+                {/* --- RIGHT UTILITY ACTION GROUP --- */}
+                <div className="flex items-center gap-4">
+                    {/* Always rendered inline button */}
+                    <a
+                        href="#contact-section"
+                        className="inline-block border border-[#C5A880] text-[#3E322A] px-4 md:px-5 py-2 text-[10px] md:text-xs tracking-widest uppercase hover:bg-[#C5A880] hover:text-white transition-all duration-300 text-center font-medium rounded-sm"
+                    >
+                        Inquire Now
+                    </a>
+
+                    {/* Trigger Icon - Visible on Mobile screens only */}
+                    <button
+                        onClick={toggleMenu}
+                        className="block md:hidden text-[#3E322A] hover:text-[#C5A880] transition-colors p-1"
+                        aria-label="Toggle Menu Navigation"
+                    >
+                        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                    </button>
+                </div>
             </nav>
 
-            {/* --- HERO SECTION --- */}
-            <header className="relative min-h-[90vh] flex items-center px-6 lg:px-16 overflow-hidden bg-white">
-                <div className="max-w-xl z-10">
-                    <motion.span
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.8 }}
-                        className="text-xs font-semibold tracking-[0.3em] uppercase text-[#C5A880] block mb-4"
-                    >
-                        Luxury Interior Architecture
-                    </motion.span>
-
-                    <div className="overflow-hidden mb-6">
-                        <motion.h1
-                            initial={{ y: '100%' }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.8, delay: 1, ease: [0.25, 1, 0.5, 1] }}
-                            className="text-4xl md:text-6xl font-serif font-light text-[#3E322A] leading-tight"
-                        >
-                            Crafting Spaces of <span className="italic font-normal">Timeless</span> Elegance
-                        </motion.h1>
-                    </div>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.2 }}
-                        className="text-[#5A4B41] text-base md:text-lg mb-8 font-light leading-relaxed"
-                    >
-                        We transform high-end residential and commercial environments into bespoke masterpieces, blending rich textures, functional luxury, and warm golden tones.
-                    </motion.p>
-
+            {/* --- MOBILE FULL-SCREEN MENU DRAWER --- */}
+            <AnimatePresence>
+                {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.4 }}
-                        className="flex flex-col sm:flex-row gap-4"
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ type: 'tween', duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                        /* FIXED: Added explicit h-screen, min-h-screen, and overflow-y-auto */
+                        className="fixed inset-0 h-screen min-h-screen w-screen z-40 bg-[#FAF9F6] pt-28 px-8 flex flex-col justify-between pb-12 md:hidden overflow-y-auto"
                     >
-                        <a href="#projects" className="bg-[#3E322A] text-white px-8 py-4 text-xs tracking-widest uppercase text-center font-medium hover:bg-[#2A211B] transition-colors flex items-center justify-center gap-2 group">
-                            Explore Portfolio
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                        {/* Nav Menu Content Stack */}
+                        <div className="flex flex-col gap-6 w-full">
+                            <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#C5A880]">
+                                Navigation Menu
+                            </span>
+
+                            <div className="flex flex-col gap-1.5 w-full">
+                                <a
+                                    href="#about"
+                                    onClick={closeMenu}
+                                    className="flex items-center justify-between text-left border-b border-[#C5A880]/10 py-3.5 text-lg font-serif tracking-wide text-[#3E322A] active:text-[#C5A880]"
+                                >
+                                    <span>About</span>
+                                    <ArrowUpRight className="w-4 h-4 text-[#C5A880]" />
+                                </a>
+
+                                <Link
+                                    to="/services"
+                                    onClick={closeMenu}
+                                    className="flex items-center justify-between text-left border-b border-[#C5A880]/10 py-3.5 text-lg font-serif tracking-wide text-[#3E322A] active:text-[#C5A880]"
+                                >
+                                    <span>Services</span>
+                                    <ArrowUpRight className="w-4 h-4 text-[#C5A880]" />
+                                </Link>
+
+                                <Link
+                                    to="/projects"
+                                    onClick={closeMenu}
+                                    className="flex items-center justify-between text-left border-b border-[#C5A880]/10 py-3.5 text-lg font-serif tracking-wide text-[#3E322A] active:text-[#C5A880]"
+                                >
+                                    <span>Projects</span>
+                                    <ArrowUpRight className="w-4 h-4 text-[#C5A880]" />
+                                </Link>
+
+                                <a
+                                    href="#why-us"
+                                    onClick={closeMenu}
+                                    className="flex items-center justify-between text-left border-b border-[#C5A880]/10 py-3.5 text-lg font-serif tracking-wide text-[#3E322A] active:text-[#C5A880]"
+                                >
+                                    <span>Why Us</span>
+                                    <ArrowUpRight className="w-4 h-4 text-[#C5A880]" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Micro Footprint Label */}
+                        <div className="border-t border-[#C5A880]/20 pt-6 w-full">
+                            <p className="text-[10px] tracking-widest uppercase text-[#5A4B41] font-medium mb-1">
+                                Sharkings Interior Architecture
+                            </p>
+                            <p className="text-[9px] tracking-wider text-[#5A4B41]/50 uppercase">
+                                Madurai · Ramanathapuram
+                            </p>
+                        </div>
                     </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* --- HERO SECTION --- */}
+            <header className="relative min-h-[90vh] lg:min-h-[90vh] flex flex-col lg:flex-row items-center justify-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-20 pb-6 lg:py-0">
+
+                {/* --- BACKGROUND ACCENTS FOR MOBILE TEXTURE --- */}
+                <div className="absolute inset-0 block lg:hidden z-0 pointer-events-none">
+                    <div className="absolute top-1/3 -right-20 w-72 h-72 rounded-full bg-[#EFECE6]/40 blur-3xl" />
                 </div>
 
-                {/* Right Collage Area */}
-                <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[80%] pr-16">
-                    <div className="relative w-full h-full">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 1.05 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1.4, delay: 1.1, ease: [0.25, 1, 0.5, 1] }}
-                            className="absolute inset-y-0 left-12 right-0 bg-[#EFECE6] border border-[#C5A880]/20 overflow-hidden shadow-xl"
+                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center relative z-10 flex-grow">
+
+                    {/* --- IMAGE CONTAINER (TOP ON MOBILE) --- */}
+                    <div className="lg:col-span-6 w-full order-1 lg:order-2">
+                        {/* Added relative and z-10 classing to allow the overlay badge to float outside boundaries */}
+                        <div className="relative w-full aspect-[21/9] sm:aspect-[21/9] lg:h-[75vh] lg:aspect-auto z-10">
+
+                            {/* Elegant Background Framing Block */}
+                            <div className="absolute -inset-1 lg:inset-y-0 lg:left-12 lg:right-0 bg-[#EFECE6] border border-[#C5A880]/10 rounded-sm -z-10" />
+
+                            {/* Core Architectural Showcase Frame */}
+                            <motion.div
+                                initial={{ opacity: 0, y: -15 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                                className="w-full h-full border border-[#C5A880]/20 overflow-hidden shadow-sm rounded-sm"
+                            >
+                                <img
+                                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
+                                    alt="Luxury living space"
+                                    className="w-full h-full object-cover"
+                                />
+                            </motion.div>
+
+                            {/* --- NEW OVERFLOWED OVERLAY BADGE --- */}
+                            {/* Visible on mobile as an asymmetric cutout, scales up gracefully into desktop view */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.6, delay: 0.6 }}
+                                className="absolute -top-3 -right-3 lg:top-auto lg:bottom-12 lg:-left-6 bg-white p-3 lg:p-6 border-r-4 lg:border-r-0 lg:border-l-4 border-[#C5A880] shadow-md max-w-[120px] lg:max-w-[240px] rounded-l-sm lg:rounded-l-none lg:rounded-r-sm z-20"
+                            >
+                                <p className="font-serif text-lg lg:text-2xl text-[#3E322A] mb-0.5 leading-none">15+</p>
+                                <p className="text-[7px] lg:text-xs tracking-wider text-[#5A4B41] uppercase font-medium leading-tight">
+                                    Years of Excellence
+                                </p>
+                            </motion.div>
+
+                        </div>
+                    </div>
+
+                    {/* --- TEXT CONTENT BELOW IMAGE ON MOBILE (lg:order-1 moves it back to the left side on desktop) --- */}
+                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 mt-2 lg:mt-0">
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            className="text-[9px] md:text-xs font-semibold tracking-[0.25em] uppercase text-[#C5A880] block mb-2"
                         >
-                            <img
-                                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
-                                alt="Luxury living space"
-                                className="w-full h-full object-cover grayscale-[10%] contrast-[105%]"
-                            />
-                        </motion.div>
+                            Luxury Interior Architecture
+                        </motion.span>
+
+                        <div className="overflow-hidden mb-3">
+                            <motion.h1
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
+                                className="text-3xl md:text-6xl font-serif font-light text-[#3E322A] leading-[1.25]"
+                            >
+                                Crafting Spaces of <span className="italic font-normal">Timeless</span> Elegance
+                            </motion.h1>
+                        </div>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.7 }}
+                            className="text-[#5A4B41] text-xs md:text-lg mb-5 font-light leading-relaxed max-w-lg"
+                        >
+                            We transform high-end residential and commercial environments into bespoke masterpieces, blending rich textures, functional luxury, and warm golden tones.
+                        </motion.p>
 
                         <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 1.6 }}
-                            className="absolute bottom-12 -left-6 bg-white p-6 border-l-4 border-[#C5A880] shadow-lg max-w-[240px]"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="flex"
                         >
-                            <p className="font-serif text-2xl text-[#3E322A] mb-1">15+</p>
-                            <p className="text-xs tracking-wider text-[#5A4B41] uppercase">Years of Architectural Excellence</p>
+                            <a
+                                href="#projects"
+                                className="bg-[#3E322A] text-white px-6 py-3.5 text-[11px] tracking-widest uppercase font-medium hover:bg-[#2A211B] transition-all duration-300 flex items-center justify-center gap-2 group rounded-sm shadow-sm"
+                            >
+                                Explore Portfolio
+                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[#C5A880]" />
+                            </a>
                         </motion.div>
                     </div>
+
                 </div>
             </header>
-
             {/* --- ABOUT SECTION --- */}
             <motion.section
                 id="about"
@@ -351,7 +490,7 @@ export default function LandingPage() {
                     ))}
                 </div>
             </motion.section>
-            
+
             {/* --- PREMIUM CONTACT SECTION WITH MAPS INTEGRATION --- */}
             <section id="contact-section" className="bg-[#FAF9F6] py-16 px-6 lg:px-16 text-[#3E322A] border-t border-[#C5A880]/10">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">

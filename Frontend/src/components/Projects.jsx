@@ -124,7 +124,7 @@ export default function Projects() {
     };
 
     return (
-        <section className="bg-white min-h-screen py-24 px-6 lg:px-16 text-[#3E322A]">
+        <section className="relative bg-[#FAF9F6] min-h-screen text-[#3E322A] px-6 lg:px-16 pt-6 md:pt-8 pb-24">
             <div className="max-w-6xl mx-auto">
                 {/* --- PREMIUM NAVIGATION LAYER --- */}
                 <div className="mb-10">
