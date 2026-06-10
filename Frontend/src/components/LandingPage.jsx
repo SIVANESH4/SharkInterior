@@ -247,7 +247,7 @@ export default function LandingPage() {
             </AnimatePresence>
 
             {/* --- HERO SECTION --- */}
-            <header className="relative min-h-[90vh] lg:min-h-[90vh] flex flex-col lg:flex-row items-center justify-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-14 pb-6 lg:py-0">
+            <header className="relative min-h-[90vh] lg:min-h-[90vh] flex flex-col lg:flex-row items-center justify-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-6pb-6 lg:py-0">
 
                 {/* --- BACKGROUND ACCENTS FOR MOBILE TEXTURE --- */}
                 <div className="absolute inset-0 block lg:hidden z-0 pointer-events-none">
