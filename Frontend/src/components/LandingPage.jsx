@@ -246,18 +246,19 @@ export default function LandingPage() {
                 )}
             </AnimatePresence>
 
-            {/* --- HERO SECTION --- */}
-            <header className="relative min-h-[90vh] lg:min-h-[90vh] flex flex-col lg:flex-row items-center justify-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-6pb-6 lg:py-0">
+            {/* --- HERO SECTION (Optimized for Multi-Phone Consistency) --- */}
+            <header className="relative min-h-0 lg:min-h-[90vh] flex items-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-28 pb-12 lg:py-0">
 
                 {/* --- BACKGROUND ACCENTS FOR MOBILE TEXTURE --- */}
                 <div className="absolute inset-0 block lg:hidden z-0 pointer-events-none">
                     <div className="absolute top-1/3 -right-20 w-72 h-72 rounded-full bg-[#EFECE6]/40 blur-3xl" />
                 </div>
 
-                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center relative z-10 flex-grow">
+                {/* FIXED: Switched gap-6 to a tightly controlled mobile-first layout stack */}
+                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-y-4 lg:gap-12 items-center relative z-10">
 
+                    {/* --- IMAGE CONTAINER (TOP ON MOBILE) --- */}
                     <div className="lg:col-span-6 w-full order-1 lg:order-2">
-                        {/* FIXED: Changed mobile aspect ratio from wide 21/9 to an elegant 16/10 to take up proper layout space */}
                         <div className="relative w-full aspect-[16/10] sm:aspect-[21/9] lg:h-[75vh] lg:aspect-auto z-10">
 
                             {/* Elegant Background Framing Block */}
@@ -292,18 +293,19 @@ export default function LandingPage() {
                         </div>
                     </div>
 
-                    {/* --- TEXT CONTENT BELOW IMAGE ON MOBILE (lg:order-1 moves it back to the left side on desktop) --- */}
-                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 -mt-4 lg:mt-0">
+                    {/* --- TEXT CONTENT (BELOW IMAGE ON MOBILE) --- */}
+                    {/* FIXED: Changed -mt-4 to a crisp, uniform mt-2. Replaced layout columns padding with strict mobile gap handling */}
+                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 mt-2 lg:mt-0 px-1 lg:px-0">
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.5 }}
-                            className="text-[9px] md:text-xs font-semibold tracking-[0.25em] uppercase text-[#C5A880] block mb-2"
+                            className="text-[9px] md:text-xs font-semibold tracking-[0.25em] uppercase text-[#C5A880] block mb-1.5"
                         >
                             Luxury Interior Architecture
                         </motion.span>
 
-                        <div className="overflow-hidden mb-3">
+                        <div className="overflow-hidden mb-2.5">
                             <motion.h1
                                 initial={{ y: '100%' }}
                                 animate={{ y: 0 }}
