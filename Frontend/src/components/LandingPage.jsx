@@ -46,7 +46,6 @@ export default function LandingPage() {
     return (
         <div className="bg-[#FAF9F6] text-[#3E322A] font-sans antialiased selection:bg-[#C5A880] selection:text-white overflow-x-hidden">
 
-            {/* --- RICH & MINIMALIST LOGO PRELOADER (From image_503624.png) --- */}
             {/* --- PREMIUM MINIMALIST IMAGE PRELOADER --- */}
             <AnimatePresence>
                 {loading && (
@@ -248,7 +247,7 @@ export default function LandingPage() {
             </AnimatePresence>
 
             {/* --- HERO SECTION --- */}
-            <header className="relative min-h-[90vh] lg:min-h-[90vh] flex flex-col lg:flex-row items-center justify-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-20 pb-6 lg:py-0">
+            <header className="relative min-h-[90vh] lg:min-h-[90vh] flex flex-col lg:flex-row items-center justify-center px-5 lg:px-16 overflow-hidden bg-[#FAF9F6] pt-14 pb-6 lg:py-0">
 
                 {/* --- BACKGROUND ACCENTS FOR MOBILE TEXTURE --- */}
                 <div className="absolute inset-0 block lg:hidden z-0 pointer-events-none">
@@ -354,7 +353,7 @@ export default function LandingPage() {
                 variants={staggerContainer}
                 className="py-24 px-6 lg:px-16 bg-[#FAF9F6]"
             >
-                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
                     <div className="grid grid-cols-2 gap-4">
                         <motion.div variants={fadeInUpVariants} className="bg-white p-2 border border-[#C5A880]/20 shadow-md">
                             <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Interior craftsmanship details" className="w-full h-64 object-cover" />
