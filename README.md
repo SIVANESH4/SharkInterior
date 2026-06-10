@@ -1,7 +1,1 @@
 ﻿# SharkInterior
-
- Install packages,
-
- npm install lucide-react
- npm install framer-motion
- npm install tailwindcss @tailwindcss/vite
