@@ -256,10 +256,9 @@ export default function LandingPage() {
 
                 <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center relative z-10 flex-grow">
 
-                    {/* --- IMAGE CONTAINER (TOP ON MOBILE) --- */}
                     <div className="lg:col-span-6 w-full order-1 lg:order-2">
-                        {/* Added relative and z-10 classing to allow the overlay badge to float outside boundaries */}
-                        <div className="relative w-full aspect-[21/9] sm:aspect-[21/9] lg:h-[75vh] lg:aspect-auto z-10">
+                        {/* FIXED: Changed mobile aspect ratio from wide 21/9 to an elegant 16/10 to take up proper layout space */}
+                        <div className="relative w-full aspect-[16/10] sm:aspect-[21/9] lg:h-[75vh] lg:aspect-auto z-10">
 
                             {/* Elegant Background Framing Block */}
                             <div className="absolute -inset-1 lg:inset-y-0 lg:left-12 lg:right-0 bg-[#EFECE6] border border-[#C5A880]/10 rounded-sm -z-10" />
@@ -278,8 +277,7 @@ export default function LandingPage() {
                                 />
                             </motion.div>
 
-                            {/* --- NEW OVERFLOWED OVERLAY BADGE --- */}
-                            {/* Visible on mobile as an asymmetric cutout, scales up gracefully into desktop view */}
+                            {/* Overflow Overlay Badge */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -291,12 +289,11 @@ export default function LandingPage() {
                                     Years of Excellence
                                 </p>
                             </motion.div>
-
                         </div>
                     </div>
 
                     {/* --- TEXT CONTENT BELOW IMAGE ON MOBILE (lg:order-1 moves it back to the left side on desktop) --- */}
-                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 lg:mt-0">
+                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 -mt-4 lg:mt-0">
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
