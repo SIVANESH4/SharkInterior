@@ -296,7 +296,7 @@ export default function LandingPage() {
                     </div>
 
                     {/* --- TEXT CONTENT BELOW IMAGE ON MOBILE (lg:order-1 moves it back to the left side on desktop) --- */}
-                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 mt-2 lg:mt-0">
+                    <div className="lg:col-span-6 max-w-xl order-2 lg:order-1 lg:mt-0">
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
