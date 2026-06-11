@@ -53,6 +53,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import ServicesSlider from "./ServicesSlider";
 import {
   motion,
   AnimatePresence,
@@ -79,6 +80,7 @@ import { Link } from "react-router-dom";
    Counts from 0 → `target` using ease-out cubic when `trigger`
    becomes true. Returns the current integer value.
 ───────────────────────────────────────────────────────────── */
+
 function useCounter(target, duration = 2000, trigger = false) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -355,10 +357,10 @@ export default function LandingPage() {
         </Link>
 
         {/* Desktop nav — FIX: added underline hover accent per link */}
-        <div className="hidden md:flex space-x-8 text-[11px] font-semibold tracking-widest uppercase text-[#5A4B41]">
+        <div className="hidden md:flex space-x-8 text-[14px] font-semibold tracking-widest uppercase text-[#5A4B41]">
           {[
-            { label: "About",    href: "#about",    isRoute: false },
-            { label: "Services", href: "/services", isRoute: true  },
+            { label: "About Us",    href: "#about",    isRoute: false },
+            { label: "Our Services", href: "/services", isRoute: true  },
             { label: "Projects", href: "/projects", isRoute: true  },
             { label: "Why Us",   href: "#why-us",   isRoute: false },
           ].map(({ label, href, isRoute }) => {
@@ -410,14 +412,14 @@ export default function LandingPage() {
             transition={{ type: "tween", duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
             className="fixed inset-0 h-screen min-h-screen w-screen z-40 bg-[#FAF9F6] pt-24 px-8 flex flex-col justify-between pb-12 md:hidden overflow-y-auto"
           >
-            <div className="flex flex-col gap-6 w-full">
+            <div className="flex flex-col gap-4 w-full">
               <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#C5A880]">
                 Navigation Menu
               </span>
               <div className="flex flex-col gap-0 w-full">
                 {[
-                  { label: "About",    href: "#about",    isRoute: false },
-                  { label: "Services", href: "/services", isRoute: true  },
+                  { label: "About Us",    href: "#about",    isRoute: false },
+                  { label: "Our Services", href: "/services", isRoute: true  },
                   { label: "Projects", href: "/projects", isRoute: true  },
                   { label: "Why Us",   href: "#why-us",   isRoute: false },
                 ].map(({ label, href, isRoute }) => {
@@ -763,6 +765,7 @@ export default function LandingPage() {
         </div>
       </motion.section>
 
+        <ServicesSlider/>
       {/* ═══════════════════════════════════════════════════
           WHY CHOOSE US
           NEW: Glassmorphism cards (bg-white/80 backdrop-blur-sm)
@@ -810,7 +813,7 @@ export default function LandingPage() {
               className="bg-white/80 backdrop-blur-sm p-6 lg:p-8 border border-[#C5A880]/10 shadow-sm text-center transition-all duration-300 hover:shadow-lg hover:border-[#C5A880]/30 rounded-sm group"
             >
               {/* Icon ring — fills brand gold on card hover */}
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FAF9F6] to-[#EFECE6] rounded-full flex items-center justify-center mx-auto mb-5 text-[#C5A880] border border-[#C5A880]/15 group-hover:bg-[#C5A880] group-hover:text-white group-hover:border-[#C5A880] transition-all duration-300 shadow-sm">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#FAF9F6] to-[#EFECE6] rounded-full flex items-center justify-center mx-auto mb-5 text-[#C5A880] border border-[#C5A880]/15 group-hover:bg-[#C5A880] group-hover:border-[#C5A880] transition-all duration-300 shadow-sm">
                 {item.icon}
               </div>
               <h3 className="font-serif text-[17px] text-[#3E322A] mb-3">{item.title}</h3>
